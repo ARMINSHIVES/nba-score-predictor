@@ -2,6 +2,7 @@
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import HistGradientBoostingRegressor
+from sklearn.impute import SimpleImputer
 from sklearn.linear_model import Ridge
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
@@ -23,23 +24,39 @@ def elo_baseline(X: pd.DataFrame):
     return ((total + margin) / 2).to_numpy(), ((total - margin) / 2).to_numpy()
 
 
+def recency_weights(season, half_life: float | None) -> np.ndarray:
+    """Halve a game's weight every `half_life` seasons back from the newest season (None: equal weights)."""
+    season = np.asarray(season, float)
+    if half_life is None:
+        return np.ones_like(season)
+    return 0.5 ** ((season.max() - season) / half_life)
+
+
+def _fit(est, X, y, weight):
+    if weight is None:
+        return est.fit(X, y)
+    key = f"{est.steps[-1][0]}__sample_weight" if hasattr(est, "steps") else "sample_weight"
+    return est.fit(X, y, **{key: weight})
+
+
 class ScoreModel:
     """Two regressors, one per team score; margin and total are derived from them."""
 
-    def __init__(self, make):
-        self.home, self.away = make(), make()
+    def __init__(self, make, columns=FEATURES):
+        self.home, self.away, self.columns = make(), make(), list(columns)
 
-    def fit(self, X, y_home, y_away):
-        self.home.fit(X[FEATURES], y_home)
-        self.away.fit(X[FEATURES], y_away)
+    def fit(self, X, y_home, y_away, weight=None):
+        _fit(self.home, X[self.columns], y_home, weight)
+        _fit(self.away, X[self.columns], y_away, weight)
         return self
 
     def __call__(self, X):
-        return self.home.predict(X[FEATURES]), self.away.predict(X[FEATURES])
+        return self.home.predict(X[self.columns]), self.away.predict(X[self.columns])
 
 
 def ridge():
-    return make_pipeline(StandardScaler(), Ridge(alpha=1.0))
+    # Box-score features are missing before 1985-86: impute the mean and add a was-missing flag.
+    return make_pipeline(SimpleImputer(add_indicator=True), StandardScaler(), Ridge(alpha=1.0))
 
 
 def gbm(max_iter=300, learning_rate=0.05, max_depth=4):

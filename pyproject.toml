@@ -1,13 +1,13 @@
 [build-system]
-requires = ["setuptools>=69"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "nbapred"
-version = "0.1.0"
-description = "Predict NBA final scores from pre-game data, with leakage-safe features and honest baselines."
+version = "0.2.0"
+description = "Predict NBA final scores before tip-off or from the halftime or end-of-Q3 score, with leakage-safe features and baselines."
 readme = "README.md"
-license = { text = "MIT" }
+license = "MIT"
 authors = [{ name = "Armaan Shivpuri" }]
 requires-python = ">=3.10"
 dependencies = [
@@ -20,6 +20,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest==8.3.3"]
+data = ["kaggle==2.2.5", "six==1.17.0"]
 
 [project.scripts]
 predict = "nbapred.cli:main"

@@ -9,3 +9,4 @@ data/raw/
 models/
 *.part
 .DS_Store
+data/processed/

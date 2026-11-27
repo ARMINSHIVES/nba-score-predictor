@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from nbapred.models import elo_baseline, metrics, season_average
+from nbapred.models import elo_baseline, metrics, recency_weights, season_average
 
 
 def test_metrics_hand_computed():
@@ -27,3 +27,9 @@ def test_season_average_mixes_offence_and_defence():
     X = pd.DataFrame({"h_for": [110.0], "h_against": [100.0], "a_for": [90.0], "a_against": [104.0]})
     h, a = season_average(X)
     assert (h[0], a[0]) == (107.0, 95.0)
+
+
+def test_recency_weights_halve_per_half_life():
+    w = recency_weights([2000, 2010, 2020], 10)
+    assert list(w) == pytest.approx([0.25, 0.5, 1.0])
+    assert list(recency_weights([1950, 2020], None)) == [1.0, 1.0]

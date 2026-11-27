@@ -1,5 +1,5 @@
 # NBA score predictor
 
-Predicts both teams' final scores for an NBA game from what was known before tip-off: Elo ratings, season and last-10-game scoring, rest days and league scoring level. A test that rewrites every same-day and later result and checks the features don't change guards against leakage, and a held-out season compares ridge regression and gradient boosting with season-average and Elo baselines.
+Predicts both teams' final scores for an NBA game, either before tip-off or from the score at halftime or after three quarters. It is trained on every season from the 1946-47 BAA to the current one: 73,440 games stitched from NBA.com box scores (Kaggle, CC0) and FiveThirtyEight's early-season records. A game-by-game check of the 61 seasons both sources cover runs on every build. Features include Elo, season and last-10-game scoring, and offensive and defensive rating and pace from box scores. A test rewrites every same-day and later result and checks that no feature changes.
 
-On 1,311 held-out games from 2014-15, the model's predicted totals miss by 13.85 points on average, against 14.18 for the best baseline. It picks the winner 67.2% of the time, which a plain Elo rating matches within noise.
+On 1,315 held-out games from 2024-25, the predicted totals miss by 14.63 points on average, against 15.05 for the best baseline. The model picks the winner 65.7% of the time, about one point better than plain Elo, a gap inside the noise. From the halftime score, the margin error falls from 11.1 to 8.7 points.

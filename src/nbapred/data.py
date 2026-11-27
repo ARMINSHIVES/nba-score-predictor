@@ -10,8 +10,11 @@ RAW_PATH = ROOT / "data" / "raw" / "nbaallelo.csv"
 URL = "https://raw.githubusercontent.com/fivethirtyeight/data/master/nba-elo/nbaallelo.csv"
 SHA256 = "d46ed3540ee8d9eca31b3e94cc8c777e0be5156173d814ebf65b8195e8d616bc"
 
-# Common modern codes -> the Basketball-Reference codes used in the file.
-ALIASES = {"BKN": "BRK", "PHX": "PHO", "CHA": "CHO", "NOR": "NOP", "GS": "GSW", "SA": "SAS", "NY": "NYK"}
+# Pairs of codes for the same team (NBA.com style, Basketball-Reference style, short forms).
+ALIASES = [("BKN", "BRK"), ("PHX", "PHO"), ("CHA", "CHO"), ("NOP", "NOR"), ("NOP", "NOH"),
+           ("GSW", "GS"), ("SAS", "SA"), ("SAS", "SAN"), ("NYK", "NY"), ("UTA", "UTAH"), ("WAS", "WSH")]
+# Columns the FiveThirtyEight file lacks; NaN keeps the game schema shared with kaggle_data.
+EXTRA = ["h_half", "a_half", "h_q3", "a_q3", "h_poss", "a_poss", "minutes"]
 
 COLUMNS = ["game_id", "lg_id", "_iscopy", "year_id", "date_game", "is_playoffs",
            "team_id", "fran_id", "pts", "opp_id", "opp_fran", "opp_pts", "game_location"]
@@ -56,6 +59,7 @@ def load_games(path: Path = RAW_PATH) -> pd.DataFrame:
         "home_pts": pick(raw.pts, raw.opp_pts),
         "away_pts": pick(raw.opp_pts, raw.pts),
     })
+    games[EXTRA] = float("nan")
     return games.sort_values(["date", "game_id"], kind="stable").reset_index(drop=True)
 
 
@@ -64,7 +68,9 @@ def team_lookup(games: pd.DataFrame) -> dict:
     codes = pd.concat([games[["date", "home_code", "home"]].set_axis(["date", "code", "fran"], axis=1),
                        games[["date", "away_code", "away"]].set_axis(["date", "code", "fran"], axis=1)])
     lookup = codes.sort_values("date").groupby("code").fran.last().to_dict()
-    for alias, code in ALIASES.items():
-        if code in lookup:
-            lookup.setdefault(alias, lookup[code])
+    for a, b in ALIASES:
+        if a in lookup or b in lookup:
+            team = lookup.get(a, lookup.get(b))
+            lookup.setdefault(a, team)
+            lookup.setdefault(b, team)
     return lookup

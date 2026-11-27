@@ -1,0 +1,19 @@
+gameId,gameDateTimeEst,hometeamCity,hometeamName,hometeamId,awayteamCity,awayteamName,awayteamId,homeScore,awayScore,winner,gameType,gameSubtype,gameLabel,gameSubLabel,seriesGameNumber,attendance,arenaId,arenaName,arenaCity,arenaState,officials,gameDate
+22501196,2026-04-12 20:30:00,Oklahoma City,Thunder,1610612760,Phoenix,Suns,1610612756,103,135,1610612756,Regular Season,,,,,18203.0,1000052,Paycom Center,Oklahoma City,OK,"Bill Kennedy, Josh Tiven, Jenna Schroeder",2026-04-12 20:30:00
+32500041,2026-02-15 19:10:00,,Stripes,1610616860,,Stars,1610616859,21,47,1610616859,All-Star Game,,All-Star Championship,,,15973.0,1000137,Intuit Dome,Inglewood,CA,"Sean Wright, Brent Barnaky, Karl Lane",2026-02-15 19:10:00
+22500602,2026-01-18 12:00:00,Memphis,Grizzlies,1610612763,Orlando,Magic,1610612753,126,109,1610612763,Regular Season,Global Games,NBA London Game,,,18424.0,315,The O2 Arena,London,,"Courtney Kirkland, Marat Kogut, Scott Twardoski",2026-01-18 12:00:00
+62500001,2025-12-16 20:30:00,New York,Knicks,1610612752,San Antonio,Spurs,1610612759,124,113,1610612752,Emirates NBA Cup,in-season-knockout,Emirates NBA Cup,Championship,,18609.0,606,T-Mobile Arena,Las Vegas,NV,"Marc Davis, Brent Barnaky, Nate Green",2025-12-16 20:30:00
+52400211,2025-04-18 21:30:00,Memphis,Grizzlies,1610612763,Dallas,Mavericks,1610612742,120,106,1610612763,Play-in Tournament,,SoFi Play-In Tournament,West,0.0,,242,,,,,2025-04-18 21:30:00
+12400074,2024-10-18 22:30:00,Golden State,Warriors,1610612744,Los Angeles,Lakers,1610612747,132,74,1610612744,Preseason,,Preseason,,0.0,,1000011,,,,,2024-10-18 22:30:00
+22101219,2022-04-10 21:30:00,Dallas,Mavericks,1610612742,San Antonio,Spurs,1610612759,130,120,1610612742,Regular Season,,,,,,193,,,,,2022-04-10 21:30:00
+22101220,2022-04-10 21:30:00,Denver,Nuggets,1610612743,Los Angeles,Lakers,1610612747,141,146,1610612747,Regular Season,,,,,,1000046,,,,,2022-04-10 21:30:00
+41900406,2020-10-11 19:30:00,Miami,Heat,1610612748,Los Angeles,Lakers,1610612747,93,106,1610612747,Playoffs,,NBA Finals,,6.0,,1000039,,,,,2020-10-11 19:30:00
+21901315,2020-08-14 21:00:00,Houston,Rockets,1610612745,Philadelphia,76ers,1610612755,96,134,1610612755,Regular Season,,,,,,1000039,,,,,2020-08-14 21:00:00
+41400406,2015-06-16 21:00:00,Cleveland,Cavaliers,1610612739,Golden State,Warriors,1610612744,97,105,1610612744,Playoffs,,NBA Finals,,6.0,,22,,,,,2015-06-16 21:00:00
+41400405,2015-06-14 20:00:00,Golden State,Warriors,1610612744,Cleveland,Cavaliers,1610612739,104,91,1610612744,Playoffs,,NBA Finals,,5.0,,71,,,,,2015-06-14 20:00:00
+41400404,2015-06-11 21:00:00,Cleveland,Cavaliers,1610612739,Golden State,Warriors,1610612744,82,103,1610612744,Playoffs,,NBA Finals,,4.0,,22,,,,,2015-06-11 21:00:00
+41400403,2015-06-09 21:00:00,Cleveland,Cavaliers,1610612739,Golden State,Warriors,1610612744,96,91,1610612739,Playoffs,,NBA Finals,,3.0,,22,,,,,2015-06-09 21:00:00
+41400402,2015-06-07 20:00:00,Golden State,Warriors,1610612744,Cleveland,Cavaliers,1610612739,93,95,1610612739,Playoffs,,NBA Finals,,2.0,,71,,,,,2015-06-07 20:00:00
+41400401,2015-06-04 21:00:00,Golden State,Warriors,1610612744,Cleveland,Cavaliers,1610612739,108,100,1610612744,Playoffs,,NBA Finals,,1.0,,71,,,,,2015-06-04 21:00:00
+20701230,2008-04-16 22:30:00,Golden State,Warriors,1610612744,Seattle,SuperSonics,1610612760,121,126,1610612760,Regular Season,,,,,,71,,,,,2008-04-16 22:30:00
+27800894,1979-04-08 20:00:00,San Antonio,Spurs,1610612759,Cleveland,Cavaliers,1610612739,117,101,1610612759,Regular Season,,,,,,1,,,,,1979-04-08 20:00:00
